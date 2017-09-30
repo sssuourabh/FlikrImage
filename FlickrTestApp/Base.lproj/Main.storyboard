@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +12,74 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FlickrTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n6I-jS-Fug">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ALN-F4-cDw" customClass="GalleryPhotosLayout" customModule="FlickrTestApp" customModuleProvider="target">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryViewPhotosCell" id="jMg-B8-wIC" customClass="GalleryViewPhotosCell" customModule="FlickrTestApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pTi-hn-ZMj">
+                                                    <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="pTi-hn-ZMj" firstAttribute="leading" secondItem="jMg-B8-wIC" secondAttribute="leading" constant="10" id="DQH-hh-Zpj"/>
+                                            <constraint firstAttribute="bottom" secondItem="pTi-hn-ZMj" secondAttribute="bottom" constant="10" id="bZt-6m-NQz"/>
+                                            <constraint firstAttribute="trailing" secondItem="pTi-hn-ZMj" secondAttribute="trailing" constant="10" id="drM-bL-nr4"/>
+                                            <constraint firstItem="pTi-hn-ZMj" firstAttribute="top" secondItem="jMg-B8-wIC" secondAttribute="top" constant="10" id="yZ7-tF-5CG"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="photosImageView" destination="pTi-hn-ZMj" id="UMh-az-6kW"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9Wn-3v-6eq"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="EmV-RZ-w2X"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="J3T-Fg-GvN"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="R4b-dP-QM4"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="T43-KF-jjf"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="UC0-b5-07q"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nj7-bb-L9i"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="osB-IQ-OEC"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="galleryCollectionView" destination="n6I-jS-Fug" id="ser-8x-6qy"/>
+                        <outlet property="photosViewModel" destination="Pxy-iT-KN8" id="Wod-Sj-H4r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="uTZ-8g-B9L" customClass="APIClient" customModule="FlickrTestApp" customModuleProvider="target"/>
+                <customObject id="Pxy-iT-KN8" customClass="PhotosViewModel" customModule="FlickrTestApp" customModuleProvider="target">
+                    <connections>
+                        <outlet property="apiClient" destination="uTZ-8g-B9L" id="GBf-Q9-yP4"/>
+                    </connections>
+                </customObject>
             </objects>
+            <point key="canvasLocation" x="-151" y="-66"/>
         </scene>
     </scenes>
 </document>
