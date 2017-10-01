@@ -20,7 +20,6 @@
 		4B2DBEBC1F7E5B4C0011A664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2DBEBB1F7E5B4C0011A664 /* Assets.xcassets */; };
 		4B2DBEBF1F7E5B4C0011A664 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2DBEBD1F7E5B4C0011A664 /* LaunchScreen.storyboard */; };
 		4B2DBECA1F7E5B4C0011A664 /* FlickrTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2DBEC91F7E5B4C0011A664 /* FlickrTestAppTests.swift */; };
-		4B761F961F8106D50087B0FE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B761F951F8106D50087B0FE /* UIImageViewExtension.swift */; };
 		4BA274581F81666600E0D877 /* MoreLoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA274561F81666600E0D877 /* MoreLoadingCell.swift */; };
 		4BA274591F81666600E0D877 /* MoreLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA274571F81666600E0D877 /* MoreLoadingCell.xib */; };
 /* End PBXBuildFile section */
@@ -53,7 +52,6 @@
 		4B2DBEC51F7E5B4C0011A664 /* FlickrTestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickrTestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2DBEC91F7E5B4C0011A664 /* FlickrTestAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrTestAppTests.swift; sourceTree = "<group>"; };
 		4B2DBECB1F7E5B4C0011A664 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B761F951F8106D50087B0FE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		4BA274561F81666600E0D877 /* MoreLoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreLoadingCell.swift; sourceTree = "<group>"; };
 		4BA274571F81666600E0D877 /* MoreLoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreLoadingCell.xib; sourceTree = "<group>"; };
 		B6F3B67D5DC22AB7DE404959 /* Pods-FlickrTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrTestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrTestApp/Pods-FlickrTestApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				4B2DBEBB1F7E5B4C0011A664 /* Assets.xcassets */,
 				4B2DBEBD1F7E5B4C0011A664 /* LaunchScreen.storyboard */,
 				4B2DBEC01F7E5B4C0011A664 /* Info.plist */,
-				4B761F951F8106D50087B0FE /* UIImageViewExtension.swift */,
 			);
 			path = FlickrTestApp;
 			sourceTree = "<group>";
@@ -356,7 +353,6 @@
 				4B232E8C1F801ED00002A8D0 /* ImageModel.swift in Sources */,
 				4BA274581F81666600E0D877 /* MoreLoadingCell.swift in Sources */,
 				4B2DBEB51F7E5B4C0011A664 /* AppDelegate.swift in Sources */,
-				4B761F961F8106D50087B0FE /* UIImageViewExtension.swift in Sources */,
 				4B232E861F7FF8580002A8D0 /* GalleryViewPhotosCell.swift in Sources */,
 				4B10AC321F803C4F008EEE4C /* Constant.swift in Sources */,
 				4B16E7601F80C91C00595898 /* GalleryPhotosLayout.swift in Sources */,

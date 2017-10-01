@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import SDWebImage
+import Alamofire
+import AlamofireImage
 
 class GalleryViewPhotosCell: UICollectionViewCell {
     
@@ -18,7 +19,8 @@ class GalleryViewPhotosCell: UICollectionViewCell {
     func configureCell(item: ImageModel) {
         self.imgActivityIndicator.stopAnimating()
 //        self.photosImageView.isHidden = false
-        self.photosImageView.sd_setImage(with: item.remoteURL)
+        self.photosImageView.af_setImage(withURL: item.remoteURL)
+        //self.photosImageView.sd_setImage(with: item.remoteURL)
     }
     
     

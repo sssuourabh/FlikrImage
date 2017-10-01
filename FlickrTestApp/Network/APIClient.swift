@@ -9,7 +9,6 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-//import AlamofireObjectMapper
 
 // this API Clicent will be called by the viewModel to get our top flickr feed from API.
 class APIClient: NSObject {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController {
 
     //OUTLETS
     @IBOutlet weak var galleryCollectionView: UICollectionView!
@@ -43,13 +43,15 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        downloadImages()
+        //downloadImages()
     }
     
-//    override func viewWillLayoutSubviews() {
-//        galleryCollectionView.collectionViewLayout.invalidateLayout()
-//    }
-
+    @objc func imageTapped (sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        animateImageView(addedImageView : imageView)
+        
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -59,118 +61,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         downloadImages()
     }
     
-    // MARK: -
-    // MARK: - UICollectionViewDataSource
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagesArray.count + 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
-        if indexPath.item == imagesArray.count {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreLoadingCell", for: indexPath) as! MoreLoadingCell
-            cell.activityIndicator.startAnimating()
-            return cell
-        }
-        
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryViewPhotosCell", for: indexPath) as! GalleryViewPhotosCell
-        cell.configureCell(item: imagesArray[indexPath.row])
-        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        tap.numberOfTapsRequired = 1
-        cell.photosImageView.addGestureRecognizer(tap)
-        cell.photosImageView.isUserInteractionEnabled = true
-        
-        return cell
-        
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.item == imagesArray.count {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                // Put your code which should be executed with a delay here
-                self.downloadImages()
-            })
-        }
-    }
-    
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//
-//        let commentView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "GalleryItemCommentView", for: indexPath) as! GalleryItemCommentView
-//
-//        commentView.commentLabel.text = "Supplementary view of kind \(kind)"
-//
-//        return commentView
-//    }
-    
-    // MARK: -
-    // MARK: - UICollectionViewDelegate
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryViewPhotosCell", for: indexPath) as! GalleryViewPhotosCell
-//
-////        animateImageView(statusImageView: cell.photosImageView)
-////        fullScreenMe(uiImageView: cell.photosImageView)
-//
-////        let alert = UIAlertController(title: "didSelectItemAtIndexPath:", message: "Indexpath = \(indexPath)", preferredStyle: .alert)
-////
-////        let alertAction = UIAlertAction(title: "Dismiss", style: .destructive, handler: nil)
-////        alert.addAction(alertAction)
-////
-////        self.present(alert, animated: true, completion: nil)
-//    }
-    
-    // MARK: -
-    // MARK: - UICollectionViewFlowLayout
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let picDimension = self.view.frame.size.width / 4.0
-        if indexPath.item == imagesArray.count {
-            return CGSize(width: 150,height:150)
-        }
-        return CGSize(width: picDimension, height: picDimension)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let leftRightInset = self.view.frame.size.width / 14.0
-        print(leftRightInset)
-        return UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset)
-    }
-    
-    
-    @objc func imageTapped (sender: UITapGestureRecognizer) {
-        let imageView = sender.view as! UIImageView
-        animateImageView(addedImageView : imageView)
-
-    }
-    
-//    func randomItemSize() -> CGSize {
-//        return CGSize(width: getRandomWidth(), height: self.itemHeight)
-//    }
-//
-//    func getRandomWidth() -> CGFloat {
-//        let range = UInt32(self.minimumItemWidth - self.minimumItemWidth + 1)
-//        let random = Float(arc4random_uniform(range))
-//        return CGFloat(self.minimumItemWidth) + CGFloat(random)
-//    }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let threshold = 100.0 as CGFloat
-//        let contentOffset = scrollView.contentOffset.y
-//        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
-//        if (maximumOffset - contentOffset <= threshold) && (maximumOffset - contentOffset != -5.0) {
-//            //Add  more rows and reload the table content.
-//
-//            downloadImages()
-//        }
-//    }
-//
     let zoomImageView = UIImageView()
     let blackBackgroundView = UIView()
     let navBarCoverView = UIView()
@@ -249,3 +139,58 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     }
 }
 
+extension ViewController : UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imagesArray.count + 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.item == imagesArray.count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreLoadingCell", for: indexPath) as! MoreLoadingCell
+            cell.activityIndicator.startAnimating()
+            return cell
+        }
+        
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryViewPhotosCell", for: indexPath) as! GalleryViewPhotosCell
+        cell.configureCell(item: imagesArray[indexPath.row])
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        tap.numberOfTapsRequired = 1
+        cell.photosImageView.addGestureRecognizer(tap)
+        cell.photosImageView.isUserInteractionEnabled = true
+        
+        return cell
+        
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == imagesArray.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                // Put your code which should be executed with a delay here
+                self.downloadImages()
+            })
+        }
+    }
+}
+extension ViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let picDimension = self.view.frame.size.width / 4.0
+        if indexPath.item == imagesArray.count {
+            return CGSize(width: 150,height:150)
+        }
+        return CGSize(width: picDimension, height: picDimension)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let leftRightInset = self.view.frame.size.width / 14.0
+        print(leftRightInset)
+        return UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset)
+    }
+    
+}
