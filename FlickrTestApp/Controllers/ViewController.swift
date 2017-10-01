@@ -13,17 +13,17 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     //OUTLETS
     @IBOutlet weak var galleryCollectionView: UICollectionView!
     var imagesArray = [ImageModel]()
-    
     @IBOutlet var photosViewModel: PhotosViewModel!
+    var minimumItemWidth = 150.0 as CGFloat
+    var itemHeight = 150.0 as CGFloat
     // MARK: -
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        // Initialise the Datasource
-        // Reload the collectionView
+        let nib = UINib(nibName: "MoreLoadingCell", bundle: nil)
+        galleryCollectionView.register(nib, forCellWithReuseIdentifier: "MoreLoadingCell")
         
     }
 
@@ -63,10 +63,17 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagesArray.count
+        return imagesArray.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       
+        if indexPath.item == imagesArray.count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreLoadingCell", for: indexPath) as! MoreLoadingCell
+            cell.activityIndicator.startAnimating()
+            return cell
+        }
+        
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryViewPhotosCell", for: indexPath) as! GalleryViewPhotosCell
         cell.configureCell(item: imagesArray[indexPath.row])
@@ -81,6 +88,16 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == imagesArray.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                // Put your code which should be executed with a delay here
+                self.downloadImages()
+            })
+        }
     }
     
 //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -114,8 +131,9 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let picDimension = self.view.frame.size.width / 4.0
-        
-//        return CGSize(collectionView.bounds.size.width, 100)
+        if indexPath.item == imagesArray.count {
+            return CGSize(width: 150,height:150)
+        }
         return CGSize(width: picDimension, height: picDimension)
     }
     
@@ -132,6 +150,16 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
 
     }
     
+//    func randomItemSize() -> CGSize {
+//        return CGSize(width: getRandomWidth(), height: self.itemHeight)
+//    }
+//
+//    func getRandomWidth() -> CGFloat {
+//        let range = UInt32(self.minimumItemWidth - self.minimumItemWidth + 1)
+//        let random = Float(arc4random_uniform(range))
+//        return CGFloat(self.minimumItemWidth) + CGFloat(random)
+//    }
+    
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        let threshold = 100.0 as CGFloat
 //        let contentOffset = scrollView.contentOffset.y
@@ -142,11 +170,10 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
 //            downloadImages()
 //        }
 //    }
-    
+//
     let zoomImageView = UIImageView()
     let blackBackgroundView = UIView()
     let navBarCoverView = UIView()
-    //let tabBarCoverView = UIView()
     
     var statusImageView: UIImageView?
     
@@ -220,11 +247,5 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
             })
         }
     }
-    
-    
-    
-    
 }
-
-
 

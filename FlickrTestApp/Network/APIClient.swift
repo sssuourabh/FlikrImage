@@ -11,7 +11,6 @@ import Alamofire
 import SwiftyJSON
 //import AlamofireObjectMapper
 
-
 // this API Clicent will be called by the viewModel to get our top flickr feed from API.
 class APIClient: NSObject {
     
@@ -45,7 +44,8 @@ class APIClient: NSObject {
                         for(_ , user) in apps.enumerated() {
                             let media = user.object(forKey: "media") as! NSDictionary
                             let photoUrl = media.object(forKey: "m") as! String
-                            let imageModel = ImageModel(title:user.object(forKey:"title" ) as! String,remoteURL:URL(string:photoUrl)!)
+                            
+                            let imageModel = ImageModel(title:user.object(forKey:"title" ) as! String,remoteURL:URL(string:photoUrl)!,description: user.object(forKey: "description") as! String)
                             self._photoList.append(imageModel)
                         }
                         print(self.photoList.count)
