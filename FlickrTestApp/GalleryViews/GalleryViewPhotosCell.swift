@@ -7,8 +7,20 @@
 //
 
 import UIKit
+import SDWebImage
 
 class GalleryViewPhotosCell: UICollectionViewCell {
     
+    @IBOutlet weak var imgActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var photosImageView: UIImageView!
+    
+    
+    func configureCell(item: ImageModel) {
+        self.imgActivityIndicator.stopAnimating()
+//        self.photosImageView.isHidden = false
+        self.photosImageView.sd_setImage(with: item.remoteURL)
+    }
+    
+    
+    
 }

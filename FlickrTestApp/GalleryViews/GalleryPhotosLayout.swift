@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GalleryItemsLayout: UICollectionViewLayout {
+class GalleryPhotosLayout: UICollectionViewLayout {
     
     var horizontalInset = 0.0 as CGFloat
     var verticalInset = 0.0 as CGFloat

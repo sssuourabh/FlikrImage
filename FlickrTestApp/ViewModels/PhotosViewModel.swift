@@ -18,6 +18,7 @@ class PhotosViewModel: NSObject {
     
     func getImagesURL(complete: @escaping DownloadComplete) {
         self.apiClient.getFlickerPublicFeedImageUrl {
+            self.galleryPhotosList = self.apiClient._photoList
             complete()
         }
     }

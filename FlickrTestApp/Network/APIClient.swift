@@ -8,21 +8,21 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 //import AlamofireObjectMapper
 
 
 // this API Clicent will be called by the viewModel to get our top flickr feed from API.
 class APIClient: NSObject {
     
-    var _usersList = [ImageModel] ()
+    var _photoList = [ImageModel] ()
 
-    var usersList: [ImageModel] {
-        return _usersList
+    var photoList: [ImageModel] {
+        return _photoList
     }
 
     // to download users data Json from the API
     func getFlickerPublicFeedImageUrl(complete: @escaping DownloadComplete) {
-        
         //3 - unwrap our API endpoint
         guard let url = URL(string: RANDOM_FLICKER_IMAGE_URL) else {
             print("Error unwrapping URL"); return }
@@ -39,9 +39,16 @@ class APIClient: NSObject {
                 // .allowFragments specifies that the json parser should allow top-level objects that aren't NSArrays or NSDictionaries.
                 if let responseJSON = try JSONSerialization.jsonObject(with: unwrappedData, options: .allowFragments) as? NSDictionary {
                     
+                    
                     //7 - create an array of dictionaries from
-                    if let apps = responseJSON.value(forKeyPath: "items") as? [Array<Any>] {
-                        
+                    if let apps = responseJSON.value(forKeyPath: "items") as? [NSDictionary] {
+                        for(_ , user) in apps.enumerated() {
+                            let media = user.object(forKey: "media") as! NSDictionary
+                            let photoUrl = media.object(forKey: "m") as! String
+                            let imageModel = ImageModel(title:user.object(forKey:"title" ) as! String,remoteURL:URL(string:photoUrl)!)
+                            self._photoList.append(imageModel)
+                        }
+                        print(self.photoList.count)
                         //8 - set the completion handler with our apps array of dictionaries
                         complete()
                     }
@@ -50,25 +57,20 @@ class APIClient: NSObject {
                 //9 - if we have an error, set our completion with nil
                 complete()
                 print("Error getting API data: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error:", message:error.localizedDescription, preferredStyle: .alert)
+                    
+                    let alertAction = UIAlertAction(title: "Dismiss", style: .destructive, handler: nil)
+                    alert.addAction(alertAction)
+                    
+                    UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+                }
+                
             }
         }
         //10 -
         dataTask.resume()
     }
-        
-        
-//        Alamofire.request(RANDOM_FLICKER_IMAGE_URL).responseJSON { response in
-//            debugPrint(response)
-//
-//            if let json = response.result.value {
-//                print("JSON: \(json)")
-//
-//                let items = json["items"]
-//            }
-//
-//
-//            complete()
-//        }
         
 
         
@@ -85,6 +87,6 @@ class APIClient: NSObject {
 //            }
 //            complete()
 //        }
-    }
+    
     
 }

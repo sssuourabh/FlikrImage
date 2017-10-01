@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LKS-nw-wPQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--FlickrPublicFeed-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FlickrTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pAA-ad-zIp"/>
+                        <viewControllerLayoutGuide type="bottom" id="9c3-Gx-eWS"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="n6I-jS-Fug">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ALN-F4-cDw" customClass="GalleryPhotosLayout" customModule="FlickrTestApp" customModuleProvider="target">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rhk-F4-Uu9">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -35,37 +39,53 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pTi-hn-ZMj">
-                                                    <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                                    <rect key="frame" x="5" y="5" width="40" height="40"/>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="eVx-TS-GS6">
+                                                    <rect key="frame" x="15.5" y="15.5" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="0aV-CP-Ov3"/>
+                                                        <constraint firstAttribute="height" constant="20" id="rj2-4q-6Z7"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="pTi-hn-ZMj" firstAttribute="leading" secondItem="jMg-B8-wIC" secondAttribute="leading" constant="10" id="DQH-hh-Zpj"/>
-                                            <constraint firstAttribute="bottom" secondItem="pTi-hn-ZMj" secondAttribute="bottom" constant="10" id="bZt-6m-NQz"/>
-                                            <constraint firstAttribute="trailing" secondItem="pTi-hn-ZMj" secondAttribute="trailing" constant="10" id="drM-bL-nr4"/>
-                                            <constraint firstItem="pTi-hn-ZMj" firstAttribute="top" secondItem="jMg-B8-wIC" secondAttribute="top" constant="10" id="yZ7-tF-5CG"/>
+                                            <constraint firstItem="pTi-hn-ZMj" firstAttribute="leading" secondItem="jMg-B8-wIC" secondAttribute="leading" constant="5" id="46e-Pe-you"/>
+                                            <constraint firstAttribute="trailing" secondItem="pTi-hn-ZMj" secondAttribute="trailing" constant="5" id="7QE-Fg-8Ay"/>
+                                            <constraint firstItem="pTi-hn-ZMj" firstAttribute="top" secondItem="jMg-B8-wIC" secondAttribute="top" constant="5" id="8tc-hv-89Z"/>
+                                            <constraint firstItem="eVx-TS-GS6" firstAttribute="centerX" secondItem="jMg-B8-wIC" secondAttribute="centerX" id="Snb-Aa-RiZ"/>
+                                            <constraint firstItem="eVx-TS-GS6" firstAttribute="centerY" secondItem="jMg-B8-wIC" secondAttribute="centerY" id="bWZ-Fb-hVi"/>
+                                            <constraint firstAttribute="bottom" secondItem="pTi-hn-ZMj" secondAttribute="bottom" constant="5" id="fJq-Ie-xi0"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="imgActivityIndicator" destination="eVx-TS-GS6" id="ifa-Gi-DBP"/>
                                             <outlet property="photosImageView" destination="pTi-hn-ZMj" id="UMh-az-6kW"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Kvp-b5-prB"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="cYk-xt-Btr"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="n6I-jS-Fug" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9Wn-3v-6eq"/>
-                            <constraint firstItem="n6I-jS-Fug" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="EmV-RZ-w2X"/>
-                            <constraint firstItem="n6I-jS-Fug" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="J3T-Fg-GvN"/>
-                            <constraint firstItem="n6I-jS-Fug" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="R4b-dP-QM4"/>
-                            <constraint firstItem="n6I-jS-Fug" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="T43-KF-jjf"/>
-                            <constraint firstItem="n6I-jS-Fug" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="UC0-b5-07q"/>
-                            <constraint firstItem="n6I-jS-Fug" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nj7-bb-L9i"/>
-                            <constraint firstItem="n6I-jS-Fug" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="osB-IQ-OEC"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="top" secondItem="pAA-ad-zIp" secondAttribute="bottom" id="PhH-0L-ffr"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Qcx-u0-dEJ"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="TyL-JE-DMb"/>
+                            <constraint firstItem="n6I-jS-Fug" firstAttribute="bottom" secondItem="9c3-Gx-eWS" secondAttribute="top" id="gx8-mh-boK"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="FlickrPublicFeed" id="R7l-p6-4Jv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="rgl-7O-4h0">
+                            <connections>
+                                <action selector="refreshButtonClicked:" destination="BYZ-38-t0r" id="29v-Io-hVd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="galleryCollectionView" destination="n6I-jS-Fug" id="ser-8x-6qy"/>
                         <outlet property="photosViewModel" destination="Pxy-iT-KN8" id="Wod-Sj-H4r"/>
@@ -79,7 +99,25 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="-151" y="-66"/>
+            <point key="canvasLocation" x="190" y="-111"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dbq-mU-R4A">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LKS-nw-wPQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z5d-zC-6Rh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1tC-cs-l6t"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YDK-b2-D3E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-604" y="-111"/>
         </scene>
     </scenes>
 </document>
