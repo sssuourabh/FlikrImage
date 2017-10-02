@@ -10,4 +10,6 @@ import Foundation
 import UIKit
 
 let RANDOM_FLICKER_IMAGE_URL = "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1"
+
 typealias DownloadComplete = () -> ()
+

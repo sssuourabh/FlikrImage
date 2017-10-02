@@ -41,13 +41,6 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pTi-hn-ZMj">
                                                     <rect key="frame" x="5" y="5" width="40" height="40"/>
                                                 </imageView>
-                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="eVx-TS-GS6">
-                                                    <rect key="frame" x="15.5" y="15.5" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="0aV-CP-Ov3"/>
-                                                        <constraint firstAttribute="height" constant="20" id="rj2-4q-6Z7"/>
-                                                    </constraints>
-                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -55,12 +48,9 @@
                                             <constraint firstItem="pTi-hn-ZMj" firstAttribute="leading" secondItem="jMg-B8-wIC" secondAttribute="leading" constant="5" id="46e-Pe-you"/>
                                             <constraint firstAttribute="trailing" secondItem="pTi-hn-ZMj" secondAttribute="trailing" constant="5" id="7QE-Fg-8Ay"/>
                                             <constraint firstItem="pTi-hn-ZMj" firstAttribute="top" secondItem="jMg-B8-wIC" secondAttribute="top" constant="5" id="8tc-hv-89Z"/>
-                                            <constraint firstItem="eVx-TS-GS6" firstAttribute="centerX" secondItem="jMg-B8-wIC" secondAttribute="centerX" id="Snb-Aa-RiZ"/>
-                                            <constraint firstItem="eVx-TS-GS6" firstAttribute="centerY" secondItem="jMg-B8-wIC" secondAttribute="centerY" id="bWZ-Fb-hVi"/>
                                             <constraint firstAttribute="bottom" secondItem="pTi-hn-ZMj" secondAttribute="bottom" constant="5" id="fJq-Ie-xi0"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="imgActivityIndicator" destination="eVx-TS-GS6" id="ifa-Gi-DBP"/>
                                             <outlet property="photosImageView" destination="pTi-hn-ZMj" id="UMh-az-6kW"/>
                                         </connections>
                                     </collectionViewCell>

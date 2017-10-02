@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  FlickrTestApp
 //
-//  Created by iOS Team on 29/09/17.
+//  Created by iOS Team on 01/10/17.
 //  Copyright © 2017 Sourabh. All rights reserved.
 //
 
@@ -12,10 +12,16 @@ class ViewController: UIViewController {
 
     //OUTLETS
     @IBOutlet weak var galleryCollectionView: UICollectionView!
-    var imagesArray = [ImageModel]()
     @IBOutlet var photosViewModel: PhotosViewModel!
-    var minimumItemWidth = 150.0 as CGFloat
-    var itemHeight = 150.0 as CGFloat
+
+    private var imagesArray = [ImageModel]()
+
+    private let zoomImageView = UIImageView()
+    private let blackBackgroundView = UIView()
+    private let navBarCoverView = UIView()
+    
+    private var randomImageView: UIImageView?
+
     // MARK: -
     // MARK: - View Lifecycle
 
@@ -43,7 +49,6 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //downloadImages()
     }
     
     @objc func imageTapped (sender: UITapGestureRecognizer) {
@@ -61,17 +66,11 @@ class ViewController: UIViewController {
         downloadImages()
     }
     
-    let zoomImageView = UIImageView()
-    let blackBackgroundView = UIView()
-    let navBarCoverView = UIView()
-    
-    var statusImageView: UIImageView?
-    
     func animateImageView(addedImageView: UIImageView) {
         if let startingFrame = addedImageView.superview?.convert((addedImageView.frame), to: nil) {
-            self.statusImageView = addedImageView
+            self.randomImageView = addedImageView
             
-            statusImageView?.alpha = 0
+            randomImageView?.alpha = 0
             
             blackBackgroundView.frame = self.view.frame
             blackBackgroundView.backgroundColor = UIColor.black
@@ -85,18 +84,13 @@ class ViewController: UIViewController {
             
             if let keyWindow = UIApplication.shared.keyWindow {
                 keyWindow.addSubview(navBarCoverView)
-                
-//                tabBarCoverView.frame = CGRect(x: 0, y: keyWindow.frame.height - 49, width: 1000, height: 49)
-//                tabBarCoverView.backgroundColor = UIColor.black
-//                tabBarCoverView.alpha = 0
-//                keyWindow.addSubview(tabBarCoverView)
             }
             
             
             zoomImageView.backgroundColor = UIColor.red
             zoomImageView.frame = startingFrame
             zoomImageView.isUserInteractionEnabled = true
-            zoomImageView.image = statusImageView?.image
+            zoomImageView.image = randomImageView?.image
             zoomImageView.contentMode = .scaleAspectFill
             zoomImageView.clipsToBounds = true
             view.addSubview(zoomImageView)
@@ -116,7 +110,7 @@ class ViewController: UIViewController {
     }
     
     @objc func zoomOut() {
-        if let startingFrame = statusImageView!.superview?.convert(statusImageView!.frame, to: nil) {
+        if let startingFrame = randomImageView!.superview?.convert(randomImageView!.frame, to: nil) {
             UIView.animate(withDuration: 0.5) {
                 self.zoomImageView.frame = startingFrame
                 
@@ -127,13 +121,11 @@ class ViewController: UIViewController {
                 self.zoomImageView.frame = startingFrame
                 self.blackBackgroundView.alpha = 0
                 self.navBarCoverView.alpha = 0
-//                self.tabBarCoverView.alpha = 0
             }, completion: { (didComplete) in
                 self.zoomImageView.removeFromSuperview()
                 self.blackBackgroundView.removeFromSuperview()
                 self.navBarCoverView.removeFromSuperview()
-//                self.tabBarCoverView.removeFromSuperview()
-                self.statusImageView?.alpha = 1
+                self.randomImageView?.alpha = 1
             })
         }
     }
@@ -178,6 +170,7 @@ extension ViewController : UICollectionViewDataSource {
         }
     }
 }
+
 extension ViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let picDimension = self.view.frame.size.width / 4.0
