@@ -9,7 +9,6 @@
 import Foundation
 
 struct ImageModel{
-    
     let title:String
     let remoteURL: URL
     
