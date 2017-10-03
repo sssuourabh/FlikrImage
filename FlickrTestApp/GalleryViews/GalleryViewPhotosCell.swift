@@ -16,7 +16,7 @@ class GalleryViewPhotosCell: UICollectionViewCell {
     
     
     func configureCell(item: ImageModel) {
-        self.photosImageView.af_setImage(withURL: item.remoteURL)
+        self.photosImageView.af_setImage(withURL: item.remoteURL,placeholderImage:#imageLiteral(resourceName: "Placeholder"))
     }
     
     

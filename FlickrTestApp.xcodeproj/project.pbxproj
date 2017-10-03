@@ -22,6 +22,7 @@
 		4B2DBEBC1F7E5B4C0011A664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2DBEBB1F7E5B4C0011A664 /* Assets.xcassets */; };
 		4B2DBEBF1F7E5B4C0011A664 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2DBEBD1F7E5B4C0011A664 /* LaunchScreen.storyboard */; };
 		4B2DBECA1F7E5B4C0011A664 /* FlickrTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2DBEC91F7E5B4C0011A664 /* FlickrTestAppTests.swift */; };
+		4B6C1F601F83646500BB8C9A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10AC331F803D28008EEE4C /* APIClient.swift */; };
 		4BA274581F81666600E0D877 /* MoreLoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA274561F81666600E0D877 /* MoreLoadingCell.swift */; };
 		4BA274591F81666600E0D877 /* MoreLoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA274571F81666600E0D877 /* MoreLoadingCell.xib */; };
 		4BDD84171F82BE5A00C71A8B /* MockImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDD84161F82BE5A00C71A8B /* MockImageModel.swift */; };
@@ -186,6 +187,7 @@
 		4B2DBEC81F7E5B4C0011A664 /* FlickrTestAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				4B6C1F5A1F83630500BB8C9A /* APIClient */,
 				4BDD84181F82BFB300C71A8B /* ViewModel */,
 				4BDD84151F82BE3400C71A8B /* Mock */,
 				4B2A07BA1F829D490004D3AA /* Models */,
@@ -193,6 +195,13 @@
 				4B2DBECB1F7E5B4C0011A664 /* Info.plist */,
 			);
 			path = FlickrTestAppTests;
+			sourceTree = "<group>";
+		};
+		4B6C1F5A1F83630500BB8C9A /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 		4BDD84151F82BE3400C71A8B /* Mock */ = {
@@ -450,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B2DBECA1F7E5B4C0011A664 /* FlickrTestAppTests.swift in Sources */,
+				4B6C1F601F83646500BB8C9A /* APIClient.swift in Sources */,
 				4BDD84171F82BE5A00C71A8B /* MockImageModel.swift in Sources */,
 				4B2A07BD1F82B02C0004D3AA /* ImageModel.swift in Sources */,
 				4BDD841A1F82BFCE00C71A8B /* PhotosViewModelTests.swift in Sources */,

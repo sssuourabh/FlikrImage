@@ -69,13 +69,7 @@
                             <constraint firstItem="n6I-jS-Fug" firstAttribute="bottom" secondItem="9c3-Gx-eWS" secondAttribute="top" id="gx8-mh-boK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="FlickrPublicFeed" id="R7l-p6-4Jv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="rgl-7O-4h0">
-                            <connections>
-                                <action selector="refreshButtonClicked:" destination="BYZ-38-t0r" id="29v-Io-hVd"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="FlickrPublicFeed" id="R7l-p6-4Jv"/>
                     <connections>
                         <outlet property="galleryCollectionView" destination="n6I-jS-Fug" id="ser-8x-6qy"/>
                         <outlet property="photosViewModel" destination="Pxy-iT-KN8" id="Wod-Sj-H4r"/>

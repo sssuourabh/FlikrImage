@@ -19,7 +19,7 @@ class APIClient: NSObject {
         return _photoList
     }
 
-    // to download users data Json from the API
+    // to download data Json from the API
     func getFlickerPublicFeedImageUrl(completion: @escaping DownloadComplete) {
         //3 - unwrap our API endpoint
         guard let url = URL(string: RANDOM_FLICKER_IMAGE_URL) else {
@@ -48,10 +48,10 @@ class APIClient: NSObject {
         } else {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: "Error:", message:"No Internet Connection", preferredStyle: .alert)
-                
+    
                 let alertAction = UIAlertAction(title: "Dismiss", style: .destructive, handler: nil)
                 alert.addAction(alertAction)
-                
+    
                 UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
             }
         }
